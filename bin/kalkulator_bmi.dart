@@ -8,8 +8,9 @@ void main() {
 
   if (validasiInput(tinggi, berat)) {
     print('Input valid. Silakan lanjut ke perhitungan BMI.');
+    hitungBMI(tinggi!, berat!);
   } else {
-    print('Input tidak valid. Tinggi dan berat harus lebih dari 0.');
+    print('Input tidak valid. Tinggi dan berat harus lebih dari 0 dan berupa angka.');
   }
 }
 
@@ -23,4 +24,19 @@ bool validasiInput(double? tinggi, double? berat) {
   if (tinggi == null || berat == null) return false;
   if (tinggi <= 0 || berat <= 0) return false;
   return true;
+}
+
+void hitungBMI(double tinggiCm, double beratKg) {
+  double tinggiM = tinggiCm / 100;
+  double bmi = beratKg / (tinggiM * tinggiM);
+
+  String kategori = (bmi < 18.5)
+      ? "Kurus"
+      : (bmi < 25)
+          ? "Normal"
+          : (bmi < 30)
+              ? "Gemuk"
+              : "Obesitas";
+
+  print('BMI: ${bmi.toStringAsFixed(2)} ($kategori)');
 }
